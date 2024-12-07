@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="529.0" prefWidth="704.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="sistemavinculacion.controlador.FXMLCrearOfertaProyectosController">
+   <children>
+      <ImageView fitHeight="137.0" fitWidth="139.0" layoutX="14.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imagenes/Logo-UV.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="146.0" layoutY="85.0" text="Nueva Oferta de Proyectos">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="37.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dpInicio" layoutX="267.0" layoutY="216.0" promptText="Fecha de Inicio" />
+      <DatePicker fx:id="dpFin" layoutX="267.0" layoutY="292.0" promptText="Fecha de Fin" />
+      <ComboBox fx:id="cbVistaPrevia" layoutX="301.0" layoutY="359.0" prefWidth="150.0" promptText="Vista Previa" />
+      <Button layoutX="112.0" layoutY="441.0" mnemonicParsing="false" onAction="#clicAgregarProyecto" text="Agregar Proyecto" />
+      <Button layoutX="508.0" layoutY="441.0" mnemonicParsing="false" onAction="#clicPublicar" text="Publicar Oferta" />
+   </children>
+</AnchorPane>

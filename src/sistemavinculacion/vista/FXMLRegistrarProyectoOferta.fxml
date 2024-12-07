@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="740.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="sistemavinculacion.controlador.FXMLRegistrarProyectoOfertaController">
+   <children>
+      <ComboBox fx:id="cbProyectos" layoutX="188.0" layoutY="70.0" prefHeight="31.0" prefWidth="225.0" promptText="Nombre Proyecto" />
+      <TextArea fx:id="taDescripcion" layoutX="188.0" layoutY="140.0" prefHeight="77.0" prefWidth="225.0" promptText="Descripcion" />
+      <TextField fx:id="tfOrganizacion" layoutX="191.0" layoutY="255.0" prefHeight="31.0" prefWidth="225.0" promptText="Organizacion" />
+      <TextField fx:id="tfCupos" layoutX="191.0" layoutY="331.0" prefHeight="31.0" prefWidth="225.0" promptText="Numero Cupos" />
+      <TextField fx:id="tfUbicacion" layoutX="188.0" layoutY="409.0" prefHeight="31.0" prefWidth="225.0" promptText="Ubicacion" />
+      <TextArea fx:id="taRequisitos" layoutX="188.0" layoutY="471.0" prefHeight="77.0" prefWidth="225.0" promptText="Requisitos" />
+      <Button layoutX="224.0" layoutY="580.0" mnemonicParsing="false" onAction="#clicAdjuntarDocumento" text="Adjuntar Documento" />
+      <Button layoutX="264.0" layoutY="646.0" mnemonicParsing="false" onAction="#clicAgregar" text="Agregar" />
+      <ImageView fitHeight="122.0" fitWidth="126.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imagenes/Logo-UV.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
