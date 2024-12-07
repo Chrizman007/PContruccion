@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="612.0" prefWidth="790.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="sistemavinculacion.controlador.FXMLExpedienteEstudianteController">
+   <children>
+      <TabPane prefHeight="538.0" prefWidth="790.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Datos Personales">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="494.0" prefWidth="790.0">
+                     <children>
+                        <TextField layoutX="326.0" layoutY="44.0" prefHeight="33.0" prefWidth="264.0" promptText="Nombre" />
+                        <TextField layoutX="327.0" layoutY="93.0" prefHeight="27.0" prefWidth="262.0" promptText="Matricula" />
+                        <TextField layoutX="325.0" layoutY="263.0" prefHeight="33.0" prefWidth="266.0" promptText="Seguro" />
+                        <TextField layoutX="325.0" layoutY="147.0" prefHeight="32.0" prefWidth="267.0" promptText="Correo" />
+                        <TextField layoutX="327.0" layoutY="206.0" prefHeight="25.0" prefWidth="263.0" promptText="Telefono" />
+                        <TextField layoutX="327.0" layoutY="326.0" prefHeight="31.0" prefWidth="265.0" promptText="Promedio" />
+                        <TextField layoutX="327.0" layoutY="390.0" prefHeight="31.0" prefWidth="267.0" promptText="Creditos" />
+                        <Label layoutX="226.0" layoutY="47.0" text="Nombre:">
+                           <font>
+                              <Font name="Bodoni MT" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="213.0" layoutY="95.0" text="Matricula:">
+                           <font>
+                              <Font name="Bodoni MT" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="233.0" layoutY="147.0" text="Correo:">
+                           <font>
+                              <Font name="Bodoni MT" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="218.0" layoutY="208.0" text="Telefono:">
+                           <font>
+                              <Font name="Bodoni MT" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="122.0" layoutY="266.0" text="Seguero Facultativo:">
+                           <font>
+                              <Font name="Bodoni MT" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="140.0" layoutY="328.0" text="Promedio General:">
+                           <font>
+                              <Font name="Bodoni MT" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="38.0" layoutY="392.0" text="Avance Academico (Creditos):">
+                           <font>
+                              <Font name="Bodoni MT" size="22.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="116.0" fitWidth="124.0" layoutX="24.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../imagenes/Usuario%20Estudiante.png" />
+                           </image>
+                        </ImageView>
+                        <Button layoutX="350.0" layoutY="448.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" text="Editar" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Historial Proyectos">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tvProyectos" layoutX="46.0" layoutY="45.0" prefHeight="419.0" prefWidth="698.0">
+                          <columns>
+                            <TableColumn prefWidth="143.0" text="Nombre Proyecto" />
+                            <TableColumn prefWidth="141.0" text="Organizacion" />
+                              <TableColumn prefWidth="136.0" text="Ubicacion" />
+                              <TableColumn prefWidth="138.0" text="Fecha Inicio" />
+                              <TableColumn prefWidth="126.0" text="Fecha Fin" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Reportes Desempeño">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tvReportes" layoutX="124.0" layoutY="40.0" prefHeight="356.0" prefWidth="543.0">
+                          <columns>
+                            <TableColumn prefWidth="150.0" text="Numero de reporte" />
+                              <TableColumn prefWidth="241.0" text="Creado Por" />
+                              <TableColumn prefWidth="151.0" text="Fecha de Creacion" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="357.0" layoutY="425.0" mnemonicParsing="false" text="Imprimir" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Documentos Oficiales">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="495.0" prefWidth="790.0">
+                     <children>
+                        <Label layoutX="147.0" layoutY="94.0" text="Carta de Asignacion:">
+                           <font>
+                              <Font name="Bodoni MT" size="29.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="149.0" layoutY="164.0" text="Carta de Liberacion:">
+                           <font>
+                              <Font name="Bodoni MT" size="29.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="144.0" layoutY="241.0" text="Plan de Actividades:">
+                           <font>
+                              <Font name="Bodoni MT" size="29.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="144.0" layoutY="323.0" text="Evaluacion de la Oganizacion:">
+                           <font>
+                              <Font name="Bodoni MT" size="29.0" />
+                           </font>
+                        </Label>
+                        <Button layoutX="496.0" layoutY="96.0" mnemonicParsing="false" onAction="#clicImprimirAsignacion" prefHeight="31.0" prefWidth="112.0" text="Imprimir" />
+                        <Button layoutX="496.0" layoutY="166.0" mnemonicParsing="false" onAction="#clicImprimirLiberacion" prefHeight="31.0" prefWidth="112.0" text="Imprimir" />
+                        <Button layoutX="496.0" layoutY="243.0" mnemonicParsing="false" onAction="#clicImprimirActividades" prefHeight="31.0" prefWidth="112.0" text="Imprimir" />
+                        <Button layoutX="541.0" layoutY="325.0" mnemonicParsing="false" onAction="#clicImprimirEvaluacion" prefHeight="31.0" prefWidth="112.0" text="Imprimir" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Button layoutX="349.0" layoutY="552.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="93.0" text="Finalizar" />
+   </children>
+</AnchorPane>

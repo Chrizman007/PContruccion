@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="562.0" prefWidth="764.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="sistemavinculacion.controlador.FXMLSeleccionProyectosController">
+   <children>
+      <TableView fx:id="tvProyectosOferta" layoutX="29.0" layoutY="51.0" prefHeight="391.0" prefWidth="527.0">
+        <columns>
+          <TableColumn prefWidth="205.0" text="Nombre Proyecto" />
+          <TableColumn minWidth="3.0" prefWidth="220.0" text="Organizacion" />
+            <TableColumn prefWidth="101.0" text="Cupos" />
+        </columns>
+      </TableView>
+      <Button layoutX="604.0" layoutY="206.0" mnemonicParsing="false" onAction="#clicTercera" prefHeight="31.0" prefWidth="79.0" text="Tercera" />
+      <Button layoutX="604.0" layoutY="156.0" mnemonicParsing="false" onAction="#clicSegunda" text="Segunda" />
+      <Button layoutX="604.0" layoutY="103.0" mnemonicParsing="false" onAction="#clicPrimera" prefHeight="31.0" prefWidth="79.0" text="Primera" />
+      <Button layoutX="569.0" layoutY="479.0" mnemonicParsing="false" onAction="#clicGuardar" text="Guardar Seleccion" />
+      <Button layoutX="69.0" layoutY="479.0" mnemonicParsing="false" onAction="#clicVolver" prefHeight="31.0" prefWidth="139.0" text="Volver" />
+   </children>
+</AnchorPane>

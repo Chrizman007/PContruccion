@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="sistemavinculacion.controlador.FXMLConsultaExpedienteController">
+   <children>
+      <Label layoutX="69.0" layoutY="92.0" text="Ingresa la matricula del Estudiante">
+         <font>
+            <Font name="Bodoni MT Bold Italic" size="29.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfMatricula" layoutX="158.0" layoutY="176.0" prefHeight="49.0" prefWidth="284.0" promptText="Matricula" />
+      <Button layoutX="259.0" layoutY="256.0" mnemonicParsing="false" onAction="#clicIngresar" prefHeight="35.0" prefWidth="92.0" text="Ingresar" />
+   </children>
+</AnchorPane>

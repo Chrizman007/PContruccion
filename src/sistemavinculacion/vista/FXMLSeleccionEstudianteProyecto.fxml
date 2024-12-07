@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="521.0" prefWidth="733.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="sistemavinculacion.controlador.FXMLSeleccionEstudianteProyectoController">
+   <children>
+      <TableView fx:id="tvEstudiantes" layoutX="42.0" layoutY="121.0" prefHeight="309.0" prefWidth="652.0">
+        <columns>
+          <TableColumn prefWidth="227.0" text="Nombre Estudiante" />
+          <TableColumn prefWidth="192.0" text="Matricula" />
+            <TableColumn prefWidth="232.0" text="Carrera" />
+        </columns>
+      </TableView>
+      <TextField fx:id="tfBuscar" layoutX="250.0" layoutY="84.0" prefHeight="31.0" prefWidth="235.0" promptText="Buscar" />
+      <Button layoutX="334.0" layoutY="444.0" mnemonicParsing="false" onAction="#clicSeleccionar" text="Seleccionar" />
+   </children>
+</AnchorPane>
