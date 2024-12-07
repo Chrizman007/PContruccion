@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="639.0" prefWidth="980.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="sistemavinculacion.controlador.FXMLProyectosAsignarController">
+   <children>
+      <TableView fx:id="tvProyectosOferta" layoutX="74.0" layoutY="190.0" prefHeight="340.0" prefWidth="833.0">
+        <columns>
+          <TableColumn prefWidth="264.0" text="Nombre Proyecto" />
+          <TableColumn prefWidth="216.0" text="Organizacion" />
+            <TableColumn prefWidth="116.0" text="Fecha Inicio" />
+            <TableColumn prefWidth="145.0" text="Fecha Termino" />
+            <TableColumn prefWidth="91.0" text="Cupos" />
+        </columns>
+      </TableView>
+      <Label layoutX="22.0" layoutY="137.0" text="Primera Opcion:">
+         <font>
+            <Font name="Bodoni MT" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="335.0" layoutY="137.0" text="Segunda Opcion:">
+         <font>
+            <Font name="Bodoni MT" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="666.0" layoutY="137.0" text="Tercera Opcion:">
+         <font>
+            <Font name="Bodoni MT" size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbPrimera" layoutX="161.0" layoutY="141.0" text="Nombre Proyecto" textFill="#2521f8">
+         <font>
+            <Font name="Bodoni MT" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbSegunda" layoutX="479.0" layoutY="141.0" text="Nombre Proyecto" textFill="#2521f8">
+         <font>
+            <Font name="Bodoni MT" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbTercera" layoutX="802.0" layoutY="141.0" text="Nombre Proyecto" textFill="#2521f8">
+         <font>
+            <Font name="Bodoni MT" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="clicAsignarProyecto" layoutX="409.0" layoutY="564.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="162.0" text="Asignar Proyecto" />
+      <Label layoutX="378.0" layoutY="76.0" text="Opciones del Estudiante:">
+         <font>
+            <Font name="Bodoni MT Condensed Bold Italic" size="28.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
