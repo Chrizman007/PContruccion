@@ -1,11 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistemavinculacion.controlador.FXMLInicioSesionController">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="452.0" prefWidth="707.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="sistemavinculacion.controlador.FXMLInicioSesionController">
+   <children>
+      <ImageView fitHeight="486.0" fitWidth="741.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imagenes/inicio%20imagen.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="407.0" layoutY="12.0" prefHeight="448.0" prefWidth="283.0" style="-fx-background-color: ebf3f1; -fx-border-color: bbbbbb;">
+         <children>
+            <Label layoutX="85.0" layoutY="279.0" text="Contraseña" />
+            <TextField fx:id="tfUsuario" layoutX="75.0" layoutY="224.0" />
+            <Button layoutX="136.0" layoutY="371.0" mnemonicParsing="false" onAction="#clicIngrear" text="Ingresar" />
+            <Label layoutX="75.0" layoutY="187.0" text="Usuario" />
+            <ComboBox fx:id="cbTipo" layoutX="85.0" layoutY="130.0" prefHeight="31.0" prefWidth="162.0" promptText="Tipo de Usuario" />
+            <Label layoutX="35.0" layoutY="37.0" prefHeight="64.0" prefWidth="287.0" style="-fx-border-color: 000000;" text="Inicio de Sesion" textFill="#d60000">
+               <font>
+                  <Font name="Cooper Black" size="33.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="tfContraseña" layoutX="75.0" layoutY="309.0" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="117.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../imagenes/Logo-UV.jpg" />
+         </image>
+      </ImageView>
+   </children>
 </AnchorPane>
