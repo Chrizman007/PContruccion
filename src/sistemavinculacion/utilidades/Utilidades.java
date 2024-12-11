@@ -1,5 +1,5 @@
-package sistemavinculacion.modelo;
 
+package sistemavinculacion.utilidades;
 import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -21,6 +21,4 @@ public class Utilidades {
         Optional<ButtonType> respuesta = alerta.showAndWait();
         return (respuesta.get()==ButtonType.OK);
     }
-    
-    
 }
