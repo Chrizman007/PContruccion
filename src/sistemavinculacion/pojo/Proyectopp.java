@@ -12,16 +12,19 @@ public class Proyectopp {
     private int idProyecto;
     private String nombre;
     private String descripcion;
-    private int idOrganizacion;
     private int cupos;
     private String requisitos;
     private String fechaInicio;
     private String fechaFin;
+    private String nombreOrganizacion;
+    private String ubicacion;
+    private boolean ofertado;
+    private int idResponsable;
 
-    // Constructor vacío
+    
     public Proyectopp() {}
 
-    // Getters y setters
+    
     public int getIdProyecto() {
         return idProyecto;
     }
@@ -44,14 +47,6 @@ public class Proyectopp {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public int getIdOrganizacion() {
-        return idOrganizacion;
-    }
-
-    public void setIdOrganizacion(int idOrganizacion) {
-        this.idOrganizacion = idOrganizacion;
     }
 
     public int getCupos() {
@@ -84,5 +79,37 @@ public class Proyectopp {
 
     public void setFechaFin(String fechaFin) {
         this.fechaFin = fechaFin;
+    }
+
+    public String getNombreOrganizacion() {
+        return nombreOrganizacion;
+    }
+
+    public void setNombreOrganizacion(String nombreOrganizacion) {
+        this.nombreOrganizacion = nombreOrganizacion;
+    }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public boolean isOfertado() {
+        return ofertado;
+    }
+
+    public void setOfertado(boolean ofertado) {
+        this.ofertado = ofertado;
+    }
+
+    public int getIdResponsable() {
+        return idResponsable;
+    }
+
+    public void setIdResponsable(int idResponsable) {
+        this.idResponsable = idResponsable;
     }
 }

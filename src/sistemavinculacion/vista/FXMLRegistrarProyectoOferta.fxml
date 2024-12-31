@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,20 +8,34 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="740.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistemavinculacion.controlador.FXMLRegistrarProyectoOfertaController">
+<AnchorPane id="AnchorPane" prefHeight="692.0" prefWidth="1121.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sistemavinculacion.controlador.FXMLRegistrarProyectoOfertaController">
    <children>
-      <ComboBox fx:id="cbProyectos" layoutX="188.0" layoutY="70.0" prefHeight="31.0" prefWidth="225.0" promptText="Nombre Proyecto" />
-      <TextArea fx:id="taDescripcion" layoutX="188.0" layoutY="140.0" prefHeight="77.0" prefWidth="225.0" promptText="Descripcion" />
-      <TextField fx:id="tfOrganizacion" layoutX="191.0" layoutY="255.0" prefHeight="31.0" prefWidth="225.0" promptText="Organizacion" />
-      <TextField fx:id="tfCupos" layoutX="191.0" layoutY="331.0" prefHeight="31.0" prefWidth="225.0" promptText="Numero Cupos" />
-      <TextField fx:id="tfUbicacion" layoutX="188.0" layoutY="409.0" prefHeight="31.0" prefWidth="225.0" promptText="Ubicacion" />
-      <TextArea fx:id="taRequisitos" layoutX="188.0" layoutY="471.0" prefHeight="77.0" prefWidth="225.0" promptText="Requisitos" />
-      <Button layoutX="224.0" layoutY="580.0" mnemonicParsing="false" onAction="#clicAdjuntarDocumento" text="Adjuntar Documento" />
-      <Button layoutX="264.0" layoutY="646.0" mnemonicParsing="false" onAction="#clicAgregar" text="Agregar" />
+      <Button layoutX="481.0" layoutY="578.0" mnemonicParsing="false" onAction="#clicAdjuntarDocumento" text="Adjuntar Documento" />
+      <Button layoutX="529.0" layoutY="639.0" mnemonicParsing="false" onAction="#clicAgregar" text="Agregar" />
       <ImageView fitHeight="122.0" fitWidth="126.0" layoutX="14.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../imagenes/Logo-UV.jpg" />
          </image>
       </ImageView>
+      <TableView fx:id="tvProyectos" layoutX="19.0" layoutY="148.0" prefHeight="397.0" prefWidth="1083.0">
+        <columns>
+          <TableColumn fx:id="colNombre" prefWidth="75.0" text="Nombre" />
+          <TableColumn fx:id="colDescripcion" prefWidth="341.0" text="Descripción" />
+            <TableColumn fx:id="colOrganizacion" prefWidth="148.0" text="Organizacion" />
+            <TableColumn fx:id="colRequisitos" prefWidth="258.0" text="Requisitos" />
+            <TableColumn fx:id="colUbicacion" prefWidth="181.0" text="Ubicacion" />
+            <TableColumn fx:id="colCupos" prefWidth="79.0" text="Cupos" />
+        </columns>
+      </TableView>
+      <Label layoutX="344.0" layoutY="25.0" text="Proyectos registrados">
+         <font>
+            <Font name="Bodoni MT Black Italic" size="38.0" />
+         </font>
+      </Label>
+      <Label layoutX="357.0" layoutY="91.0" text="Selecciona el Proyecto a agregar a la Oferta" textFill="#0626f5">
+         <font>
+            <Font name="Bookman Old Style Bold Italic" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

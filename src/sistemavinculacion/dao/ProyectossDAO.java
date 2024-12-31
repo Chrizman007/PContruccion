@@ -23,7 +23,8 @@ public class ProyectossDAO {
         Connection conexionBD = ConexionBD.abrirConexion();
         if (conexionBD != null) {
             try {
-                String consulta = "SELECT id_proyecto, nombre, descripcion, id_organizacion, cupos, requisitos, fecha_inicio, fecha_fin FROM Proyectoss";
+                String consulta = "SELECT id_proyecto, nombre, descripcion, cupos, requisitos, fecha_inicio, fecha_fin, " +
+                                "nombre_organizacion, ubicacion, ofertado, id_responsable FROM Proyectoss";
                 PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
                 ResultSet resultado = prepararConsulta.executeQuery();
                 proyectos = new ArrayList<>();
@@ -45,12 +46,41 @@ public class ProyectossDAO {
         proyecto.setIdProyecto(resultado.getInt("id_proyecto"));
         proyecto.setNombre(resultado.getString("nombre"));
         proyecto.setDescripcion(resultado.getString("descripcion"));
-        proyecto.setIdOrganizacion(resultado.getInt("id_organizacion"));
         proyecto.setCupos(resultado.getInt("cupos"));
         proyecto.setRequisitos(resultado.getString("requisitos"));
         proyecto.setFechaInicio(resultado.getString("fecha_inicio"));
         proyecto.setFechaFin(resultado.getString("fecha_fin"));
+        proyecto.setNombreOrganizacion(resultado.getString("nombre_organizacion"));
+        proyecto.setUbicacion(resultado.getString("ubicacion"));
+        proyecto.setOfertado(resultado.getBoolean("ofertado"));
+        proyecto.setIdResponsable(resultado.getInt("id_responsable"));
         return proyecto;
     }
-   
+
+    public static int insertarProyecto(Proyectoss proyecto) throws SQLException {
+        int resultado = 0;
+        Connection conexionBD = ConexionBD.abrirConexion();
+        if (conexionBD != null) {
+            try {
+                String consulta = "INSERT INTO Proyectoss (nombre, descripcion, cupos, requisitos, fecha_inicio, fecha_fin, " +
+                                "nombre_organizacion, ubicacion, ofertado, id_responsable) VALUES (?, ?, ?, ?, ?, ?, ?, ?, FALSE, NULL)";
+                PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
+                prepararConsulta.setString(1, proyecto.getNombre());
+                prepararConsulta.setString(2, proyecto.getDescripcion());
+                prepararConsulta.setInt(3, proyecto.getCupos());
+                prepararConsulta.setString(4, proyecto.getRequisitos());
+                prepararConsulta.setString(5, proyecto.getFechaInicio());
+                prepararConsulta.setString(6, proyecto.getFechaFin());
+                prepararConsulta.setString(7, proyecto.getNombreOrganizacion());
+                prepararConsulta.setString(8, proyecto.getUbicacion());
+                
+                resultado = prepararConsulta.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                conexionBD.close();
+            }
+        }
+        return resultado;
+    }
 }
