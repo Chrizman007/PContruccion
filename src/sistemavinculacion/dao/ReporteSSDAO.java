@@ -67,39 +67,37 @@ public class ReporteSSDAO {
     }
     
     public static HashMap<String, Object> registrarReporte(ReporteSS reporte) {
-    HashMap<String, Object> respuesta = new HashMap<>();
-    Connection conexionBD = ConexionBD.abrirConexion();
-    if (conexionBD != null) {
-        try {
-            String sentencia = "INSERT INTO reportes_ss (id_reporte_ss, id_proyecto_ss, fecha_subida, archivo_reporte, comentarios, matricula, tipo) " +
-                               "VALUES (?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
-            prepararSentencia.setInt(1, reporte.getIdReporteSS());
-            prepararSentencia.setInt(2, reporte.getIdProyectoSS());
-            prepararSentencia.setString(3, reporte.getFechaSubida());
-            prepararSentencia.setBytes(4, reporte.getArchivoReporte());
-            prepararSentencia.setString(5, reporte.getComentarios());
-            prepararSentencia.setInt(6, reporte.getMatricula());
-            prepararSentencia.setString(7, reporte.getTipo());
-            int filasAfectadas = prepararSentencia.executeUpdate();
-            conexionBD.close();
-            if (filasAfectadas > 0) {
-                respuesta.put("error", false);
-                respuesta.put("mensaje", "El reporte fue registrado con éxito.");
-            } else {
+        HashMap<String, Object> respuesta = new HashMap<>();
+        Connection conexionBD = ConexionBD.abrirConexion();
+        if (conexionBD != null) {
+            try {
+                String sentencia = "INSERT INTO reportes_ss (id_proyecto_ss, fecha_subida, archivo_reporte, comentarios, matricula, tipo) " +
+                                 "VALUES (?, NOW(), ?, ?, ?, ?)";
+                PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
+                prepararSentencia.setInt(1, reporte.getIdProyectoSS());
+                prepararSentencia.setBytes(2, reporte.getArchivoReporte());
+                prepararSentencia.setString(3, reporte.getComentarios());
+                prepararSentencia.setInt(4, reporte.getMatricula());
+                prepararSentencia.setString(5, reporte.getTipo());
+                int filasAfectadas = prepararSentencia.executeUpdate();
+                conexionBD.close();
+                if (filasAfectadas > 0) {
+                    respuesta.put("error", false);
+                    respuesta.put("mensaje", "El reporte fue registrado con éxito.");
+                } else {
+                    respuesta.put("error", true);
+                    respuesta.put("mensaje", "No se pudo registrar el reporte, por favor intente más tarde.");
+                }
+            } catch (SQLException e) {
                 respuesta.put("error", true);
-                respuesta.put("mensaje", "No se pudo registrar el reporte, por favor intente más tarde.");
+                respuesta.put("mensaje", e.getMessage());
             }
-        } catch (SQLException e) {
+        } else {
             respuesta.put("error", true);
-            respuesta.put("mensaje", e.getMessage());
+            respuesta.put("mensaje", "No se pudo establecer conexión con la base de datos.");
         }
-    } else {
-        respuesta.put("error", true);
-        respuesta.put("mensaje", "No se pudo establecer conexión con la base de datos.");
+        return respuesta;
     }
-    return respuesta;
-}
 
     private static ReporteSS serializarReporte(ResultSet resultado) throws SQLException {
         ReporteSS reporte = new ReporteSS();
