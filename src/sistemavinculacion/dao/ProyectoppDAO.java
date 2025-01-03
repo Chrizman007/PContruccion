@@ -23,8 +23,8 @@ public class ProyectoppDAO {
         Connection conexionBD = ConexionBD.abrirConexion();
         if (conexionBD != null) {
             try {
-                String consulta = "SELECT id_proyecto, nombre, descripcion, cupos, requisitos, fecha_inicio, fecha_fin, " +
-                                "nombre_organizacion, ubicacion, ofertado, id_responsable FROM Proyectopp";
+                String consulta = "SELECT id_proyecto_pp, nombre, descripcion, cupos, requisitos, fecha_inicio, fecha_fin, " +
+                                "nombre_organizacion, ubicacion, ofertado, id_responsable, archivo FROM proyectos_pp";
                 PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
                 ResultSet resultado = prepararConsulta.executeQuery();
                 proyectos = new ArrayList<>();
@@ -40,10 +40,50 @@ public class ProyectoppDAO {
         }
         return proyectos;
     }
+    
+    public static void subirDocumento(int idProyecto, byte[] documentoBytes, String nombreDocumento) throws SQLException {
+        String sql = "UPDATE proyectos_pp SET archivo = ? WHERE id_proyecto_pp = ?";
+        
+        try (Connection conn = ConexionBD.abrirConexion();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            
+            stmt.setBytes(1, documentoBytes);
+            stmt.setInt(2, idProyecto);
+            
+            int filasAfectadas = stmt.executeUpdate();
+            if (filasAfectadas == 0) {
+                System.out.println("No se encontró el proyecto con el ID " + idProyecto);
+            }
+        } catch (SQLException e) {
+            throw new SQLException("Error al actualizar el documento en la base de datos", e);
+        }
+    }
+    
+    public static int actualizarOfertado(int idProyecto, int ofertado) throws SQLException {
+        int resultado = 0;
+        Connection conexionBD = ConexionBD.abrirConexion();
+        if (conexionBD != null) {
+            try {
+                String consulta = "UPDATE proyectos_pp SET ofertado = ? WHERE id_proyecto_pp = ?";
+                PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
+                prepararConsulta.setInt(1, ofertado); // Actualiza el atributo 'ofertado' como int
+                prepararConsulta.setInt(2, idProyecto);
+
+                resultado = prepararConsulta.executeUpdate(); // Ejecuta la consulta y guarda el número de filas afectadas
+            } catch (SQLException e) {
+                e.printStackTrace(); // Imprime la traza del error para depuración
+                throw new SQLException("Error al actualizar el estado 'ofertado' del proyecto.", e);
+            } finally {
+                conexionBD.close(); // Cierra la conexión en el bloque finally
+            }
+        }
+        return resultado; // Retorna el número de filas afectadas
+    }
+
 
     private static Proyectopp serializarProyecto(ResultSet resultado) throws SQLException {
         Proyectopp proyecto = new Proyectopp();
-        proyecto.setIdProyecto(resultado.getInt("id_proyecto"));
+        proyecto.setIdProyecto(resultado.getInt("id_proyecto_pp"));
         proyecto.setNombre(resultado.getString("nombre"));
         proyecto.setDescripcion(resultado.getString("descripcion"));
         proyecto.setCupos(resultado.getInt("cupos"));
@@ -52,8 +92,9 @@ public class ProyectoppDAO {
         proyecto.setFechaFin(resultado.getString("fecha_fin"));
         proyecto.setNombreOrganizacion(resultado.getString("nombre_organizacion"));
         proyecto.setUbicacion(resultado.getString("ubicacion"));
-        proyecto.setOfertado(resultado.getBoolean("ofertado"));
+        proyecto.setOfertado(resultado.getInt("ofertado"));
         proyecto.setIdResponsable(resultado.getInt("id_responsable"));
+        proyecto.setArchivo(resultado.getBytes("archivo"));
         return proyecto;
     }
 
@@ -62,8 +103,8 @@ public class ProyectoppDAO {
         Connection conexionBD = ConexionBD.abrirConexion();
         if (conexionBD != null) {
             try {
-                String consulta = "INSERT INTO Proyectopp (nombre, descripcion, cupos, requisitos, fecha_inicio, fecha_fin, " +
-                                "nombre_organizacion, ubicacion, ofertado, id_responsable) VALUES (?, ?, ?, ?, ?, ?, ?, ?, FALSE, NULL)";
+                String consulta = "INSERT INTO proyectos_pp (nombre, descripcion, cupos, requisitos, fecha_inicio, fecha_fin, " +
+                                "nombre_organizacion, ubicacion, ofertado, id_responsable, archivo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, NULL, ?)";
                 PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
                 prepararConsulta.setString(1, proyecto.getNombre());
                 prepararConsulta.setString(2, proyecto.getDescripcion());

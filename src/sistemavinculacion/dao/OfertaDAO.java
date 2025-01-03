@@ -21,7 +21,7 @@ public class OfertaDAO {
         Connection conexionBD = ConexionBD.abrirConexion();
         if (conexionBD != null) {
             try {
-                String sentencia = "INSERT INTO ofertas (fecha_inicio, fecha_fin) VALUES (?, ?)";
+                String sentencia = "INSERT INTO oferta (fecha_inicio, fecha_fin) VALUES (?, ?)";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
                 prepararSentencia.setString(1, oferta.getFechaInicio());
                 prepararSentencia.setString(2, oferta.getFechaFin());

@@ -16,6 +16,16 @@ public class ReporteSS {
     private String comentarios;
     private int matricula;
     private String tipo;
+
+    public ReporteSS(int idReporteSS, int idProyectoSS, String fechaSubida, byte[] archivoReporte, String comentarios, int matricula, String tipo) {
+        this.idReporteSS = idReporteSS;
+        this.idProyectoSS = idProyectoSS;
+        this.fechaSubida = fechaSubida;
+        this.archivoReporte = archivoReporte;
+        this.comentarios = comentarios;
+        this.matricula = matricula;
+        this.tipo = tipo;
+    }
     
     public ReporteSS() {}
     

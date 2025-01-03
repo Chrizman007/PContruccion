@@ -11,6 +11,12 @@ package sistemavinculacion.pojo;
 public class Expediente {
     private int idExpediente;
     private int matricula;
+
+    public Expediente(int idExpediente, int matricula) {
+        this.idExpediente = idExpediente;
+        this.matricula = matricula;
+    }
+    
     
     public Expediente() {}
     

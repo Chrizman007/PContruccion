@@ -13,6 +13,13 @@ public class Responsable {
     private String nombre;
     private String correo;
     private String telefono;
+
+    public Responsable(int idResponsable, String nombre, String correo, String telefono) {
+        this.idResponsable = idResponsable;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.telefono = telefono;
+    }
     
     public Responsable() {}
     

@@ -16,6 +16,16 @@ public class ReportePP {
     private String comentarios;
     private int matricula;
     private String tipo;
+
+    public ReportePP(int idReportePP, int idProyectoPP, String fechaSubida, byte[] archivoReporte, String comentarios, int matricula, String tipo) {
+        this.idReportePP = idReportePP;
+        this.idProyectoPP = idProyectoPP;
+        this.fechaSubida = fechaSubida;
+        this.archivoReporte = archivoReporte;
+        this.comentarios = comentarios;
+        this.matricula = matricula;
+        this.tipo = tipo;
+    }
     
     public ReportePP() {}
     

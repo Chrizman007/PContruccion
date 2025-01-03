@@ -27,7 +27,7 @@ public class EstudianteDAO {
         if (conexionBD != null) {
             try {
                 String consulta = "SELECT matricula, nombre, correo, telefono, carrera, seguro_facultativo, promedio_general, creditos, "
-                        + "carta_liberacion, carta_asignacion, plan_actividades, evaluacion_organizacion, idUsuario, usuario, contrasena "
+                        + "carta_liberacion, carta_asignacion, plan_actividades, evaluacion_organizacion, idUsuario, usuario, contrasena, asignado"
                         + "FROM estudiante";
                 PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
                 ResultSet resultado = prepararConsulta.executeQuery();
@@ -51,8 +51,8 @@ public class EstudianteDAO {
         if (conexionBD != null) {
             try {
                 String sentencia = "INSERT INTO estudiante (matricula, nombre, correo, telefono, carrera, seguro_facultativo, promedio_general, "
-                        + "creditos, carta_liberacion, carta_asignacion, plan_actividades, evaluacion_organizacion, idUsuario, usuario, contrasena) "
-                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        + "creditos, idUsuario, usuario, contrasena, asignado) "
+                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
                 prepararSentencia.setString(1, estudiante.getMatricula());
                 prepararSentencia.setString(2, estudiante.getNombre());
@@ -62,13 +62,9 @@ public class EstudianteDAO {
                 prepararSentencia.setString(6, estudiante.getSeguroFacultativo());
                 prepararSentencia.setFloat(7, estudiante.getPromedioGeneral());
                 prepararSentencia.setInt(8, estudiante.getCreditos());
-                prepararSentencia.setBytes(9,estudiante.getCartaLiberacion());
-                prepararSentencia.setBytes(10,estudiante.getCartaAsignacion());
-                prepararSentencia.setBytes(11, estudiante.getPlanActividades());
-                prepararSentencia.setBytes(12, estudiante.getEvaluacionOrganizacion());
-                prepararSentencia.setInt(13, estudiante.getIdUsuario());
-                prepararSentencia.setString(14, estudiante.getUsuario());
-                prepararSentencia.setString(15, estudiante.getContraseña());
+                prepararSentencia.setInt(9, estudiante.getIdUsuario());
+                prepararSentencia.setString(10, estudiante.getUsuario());
+                prepararSentencia.setString(11, estudiante.getContraseña());
                 int filasAfectadas = prepararSentencia.executeUpdate();
                 conexionBD.close();
                 if (filasAfectadas > 0) {
@@ -99,13 +95,10 @@ public class EstudianteDAO {
         estudiante.setSeguroFacultativo(resultado.getString("seguro_facultativo"));
         estudiante.setPromedioGeneral(resultado.getFloat("promedio_general"));
         estudiante.setCreditos(resultado.getInt("creditos"));
-        estudiante.setCartaLiberacion(resultado.getBytes("carta_liberacion"));
-        estudiante.setCartaAsignacion(resultado.getBytes("carta_asignacion"));
-        estudiante.setPlanActividades(resultado.getBytes("plan_actividades"));
-        estudiante.setEvaluacionOrganizacion(resultado.getBytes("evaluacion_organizacion"));
         estudiante.setIdUsuario(resultado.getInt("idUsuario"));
         estudiante.setUsuario(resultado.getString("usuario"));
         estudiante.setContraseña(resultado.getString("contrasena"));
+        estudiante.setAsignado(resultado.getInt("asignado"));
         return estudiante;
     }
 }

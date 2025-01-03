@@ -18,9 +18,24 @@ public class Proyectopp {
     private String fechaFin;
     private String nombreOrganizacion;
     private String ubicacion;
-    private boolean ofertado;
+    private int ofertado;
     private int idResponsable;
+    private byte[] archivo;
 
+    public Proyectopp(int idProyecto, String nombre, String descripcion, int cupos, String requisitos, String fechaInicio, String fechaFin, String nombreOrganizacion, String ubicacion, int ofertado, int idResponsable, byte[] archivo) {
+        this.idProyecto = idProyecto;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.cupos = cupos;
+        this.requisitos = requisitos;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.nombreOrganizacion = nombreOrganizacion;
+        this.ubicacion = ubicacion;
+        this.ofertado = ofertado;
+        this.idResponsable = idResponsable;
+        this.archivo = archivo;
+    }
     
     public Proyectopp() {}
 
@@ -97,11 +112,11 @@ public class Proyectopp {
         this.ubicacion = ubicacion;
     }
 
-    public boolean isOfertado() {
+    public int isOfertado() {
         return ofertado;
     }
 
-    public void setOfertado(boolean ofertado) {
+    public void setOfertado(int ofertado) {
         this.ofertado = ofertado;
     }
 
@@ -111,5 +126,11 @@ public class Proyectopp {
 
     public void setIdResponsable(int idResponsable) {
         this.idResponsable = idResponsable;
+    }
+    public byte[] getArchivo() {
+        return archivo;
+    }
+    public void setArchivo(byte[] archivo) {
+        this.archivo = archivo;
     }
 }
