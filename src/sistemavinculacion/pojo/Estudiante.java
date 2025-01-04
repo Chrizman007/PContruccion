@@ -11,6 +11,9 @@ package sistemavinculacion.pojo;
 public class Estudiante {
 
     private String matricula;
+    private Integer idUsuario;
+    private String usuario;
+    private String contraseña;
     private String nombre;
     private String correo;
     private String telefono;
@@ -18,9 +21,6 @@ public class Estudiante {
     private String seguroFacultativo;
     private Float promedioGeneral;
     private Integer creditos;
-    private Integer idUsuario;
-    private String usuario;
-    private String contraseña;
     private int asignado;
 
     public Estudiante() {

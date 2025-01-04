@@ -1,26 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package sistemavinculacion.controlador;
 
+import sistemavinculacion.pojo.Estudiante;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 
-/**
- * FXML Controller class
- *
- * @author chris
- */
-public class FXMLMenuEstudianteController implements Initializable {
+public class FXMLMenuEstudianteController {
 
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+    @FXML
+    private Label lbNombreEstudiante;
+    @FXML
+    private Label lbCorreoEstudiante;
+
+    // Método para inicializar la información del estudiante
+    public void inicializarValores(Estudiante estudiante) {
+        lbNombreEstudiante.setText(estudiante.getNombre());
+        lbCorreoEstudiante.setText(estudiante.getCorreo());
+    }
+
+    // Agregar aquí las acciones que el estudiante puede realizar
+    @FXML
+    private void clicVerActividades() {
+        // Código para redirigir a la visualización de actividades
+    }
+
+    @FXML
+    private void clicVerEvaluacion() {
+        // Código para redirigir a la visualización de evaluación
+    }
 }

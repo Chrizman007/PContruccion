@@ -10,22 +10,21 @@ package sistemavinculacion.pojo;
  */
 public class Coordinador {
     private Integer idCoordinador;
-    private String nombre;
-    private String matricula;
-    private String correo;
     private Integer idUsuario;
     private String usuario;
     private String contraseña;
+    private String nombre;
+    private String correo;
+
 
     // Constructor vacío
     public Coordinador() {
     }
 
     // Constructor con todos los atributos
-    public Coordinador(Integer idCoordinador, String nombre, String matricula, String correo, Integer idUsuario, String usuario, String contraseña) {
+    public Coordinador(Integer idCoordinador, String nombre, String correo, Integer idUsuario, String usuario, String contraseña) {
         this.idCoordinador = idCoordinador;
         this.nombre = nombre;
-        this.matricula = matricula;
         this.correo = correo;
         this.idUsuario = idUsuario;
         this.usuario = usuario;
@@ -47,14 +46,6 @@ public class Coordinador {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
     }
 
     public String getCorreo() {

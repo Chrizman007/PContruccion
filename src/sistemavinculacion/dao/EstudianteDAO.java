@@ -21,14 +21,15 @@ import java.util.List;
  */
 public class EstudianteDAO {
 
+    // Método para obtener todos los estudiantes (ya existente)
     public static List<Estudiante> obtenerEstudiantes() throws SQLException {
         List<Estudiante> estudiantes = null;
         Connection conexionBD = ConexionBD.abrirConexion();
         if (conexionBD != null) {
             try {
                 String consulta = "SELECT matricula, nombre, correo, telefono, carrera, seguro_facultativo, promedio_general, creditos, "
-                        + "carta_liberacion, carta_asignacion, plan_actividades, evaluacion_organizacion, idUsuario, usuario, contrasena, asignado"
-                        + "FROM estudiante";
+                        + "carta_liberacion, carta_asignacion, plan_actividades, evaluacion_organizacion, idUsuario, usuario, contrasena, asignado "
+                        + "FROM estudiantes";
                 PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
                 ResultSet resultado = prepararConsulta.executeQuery();
                 estudiantes = new ArrayList<>();
@@ -45,46 +46,28 @@ public class EstudianteDAO {
         return estudiantes;
     }
 
-    public static HashMap<String, Object> registrarEstudiante(Estudiante estudiante) {
-        HashMap<String, Object> respuesta = new HashMap<>();
-        Connection conexionBD = ConexionBD.abrirConexion();
-        if (conexionBD != null) {
-            try {
-                String sentencia = "INSERT INTO estudiante (matricula, nombre, correo, telefono, carrera, seguro_facultativo, promedio_general, "
-                        + "creditos, idUsuario, usuario, contrasena, asignado) "
-                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)";
-                PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
-                prepararSentencia.setString(1, estudiante.getMatricula());
-                prepararSentencia.setString(2, estudiante.getNombre());
-                prepararSentencia.setString(3, estudiante.getCorreo());
-                prepararSentencia.setString(4, estudiante.getTelefono());
-                prepararSentencia.setString(5, estudiante.getCarrera());
-                prepararSentencia.setString(6, estudiante.getSeguroFacultativo());
-                prepararSentencia.setFloat(7, estudiante.getPromedioGeneral());
-                prepararSentencia.setInt(8, estudiante.getCreditos());
-                prepararSentencia.setInt(9, estudiante.getIdUsuario());
-                prepararSentencia.setString(10, estudiante.getUsuario());
-                prepararSentencia.setString(11, estudiante.getContraseña());
-                int filasAfectadas = prepararSentencia.executeUpdate();
-                conexionBD.close();
-                if (filasAfectadas > 0) {
-                    respuesta.put("error", false);
-                    respuesta.put("mensaje", "El estudiante " + estudiante.getNombre() + " fue registrado con éxito");
-                } else {
-                    respuesta.put("error", true);
-                    respuesta.put("mensaje", "No se pudo registrar el estudiante, por favor intente más tarde");
-                }
-            } catch (SQLException e) {
-                respuesta.put("error", true);
-                respuesta.put("mensaje", e.getMessage());
-            }
-        } else {
-            respuesta.put("error", true);
-            respuesta.put("mensaje", "No se pudo establecer conexión con la base de datos");
+    // Nuevo método para obtener estudiante por usuario y contraseña
+ public static Estudiante obtenerEstudiantePorCredenciales(String usuario, String contrasena, String tipoUsuario) throws SQLException {
+    Connection conexion = ConexionBD.abrirConexion();
+    Estudiante estudiante = null;
+    if (conexion != null) {
+        String consulta = "SELECT * FROM estudiantes WHERE usuario = ? AND contrasena = ? AND id_usuario = ?";
+        PreparedStatement prepararConsulta = conexion.prepareStatement(consulta);
+        prepararConsulta.setString(1, usuario);
+        prepararConsulta.setString(2, contrasena);
+        prepararConsulta.setString(3, tipoUsuario);
+        ResultSet resultado = prepararConsulta.executeQuery();
+        if (resultado.next()) {
+            estudiante = new Estudiante();
+            estudiante.setIdUsuario(resultado.getInt("id_usuario"));
+            estudiante.setNombre(resultado.getString("nombre"));
+            estudiante.setUsuario(resultado.getString("usuario"));
         }
-        return respuesta;
+        conexion.close();
     }
-
+    return estudiante;
+}
+    // Método de serialización (ya existente)
     private static Estudiante serializarEstudiante(ResultSet resultado) throws SQLException {
         Estudiante estudiante = new Estudiante();
         estudiante.setMatricula(resultado.getString("matricula"));
@@ -95,7 +78,7 @@ public class EstudianteDAO {
         estudiante.setSeguroFacultativo(resultado.getString("seguro_facultativo"));
         estudiante.setPromedioGeneral(resultado.getFloat("promedio_general"));
         estudiante.setCreditos(resultado.getInt("creditos"));
-        estudiante.setIdUsuario(resultado.getInt("idUsuario"));
+        estudiante.setIdUsuario(resultado.getInt("id_usuario"));
         estudiante.setUsuario(resultado.getString("usuario"));
         estudiante.setContraseña(resultado.getString("contrasena"));
         estudiante.setAsignado(resultado.getInt("asignado"));
