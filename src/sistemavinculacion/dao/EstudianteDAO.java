@@ -21,13 +21,14 @@ import java.util.List;
  */
 public class EstudianteDAO {
 
+    // Método para obtener todos los estudiantes (ya existente)
     public static List<Estudiante> obtenerEstudiantes() throws SQLException {
         List<Estudiante> estudiantes = null;
         Connection conexionBD = ConexionBD.abrirConexion();
         if (conexionBD != null) {
             try {
                 String consulta = "SELECT matricula, nombre, correo, telefono, carrera, seguro_facultativo, promedio_general, creditos, "
-                        + ", idUsuario, usuario, contrasena, asignado"
+                        + "idUsuario, usuario, contrasena, asignado "
                         + "FROM estudiantes";
                 PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
                 ResultSet resultado = prepararConsulta.executeQuery();
@@ -94,7 +95,29 @@ public class EstudianteDAO {
         return estudiantes;
     }
 
-    public static HashMap<String, Object> registrarEstudiante(Estudiante estudiante) {
+    // Nuevo método para obtener estudiante por usuario y contraseña
+ public static Estudiante obtenerEstudiantePorCredenciales(String usuario, String contrasena, String tipoUsuario) throws SQLException {
+    Connection conexion = ConexionBD.abrirConexion();
+    Estudiante estudiante = null;
+    if (conexion != null) {
+        String consulta = "SELECT * FROM estudiantes WHERE usuario = ? AND contrasena = ? AND id_usuario = ?";
+        PreparedStatement prepararConsulta = conexion.prepareStatement(consulta);
+        prepararConsulta.setString(1, usuario);
+        prepararConsulta.setString(2, contrasena);
+        prepararConsulta.setString(3, tipoUsuario);
+        ResultSet resultado = prepararConsulta.executeQuery();
+        if (resultado.next()) {
+            estudiante = new Estudiante();
+            estudiante.setIdUsuario(resultado.getInt("id_usuario"));
+            estudiante.setNombre(resultado.getString("nombre"));
+            estudiante.setUsuario(resultado.getString("usuario"));
+        }
+        conexion.close();
+    }
+    return estudiante;
+}
+ 
+ public static HashMap<String, Object> registrarEstudiante(Estudiante estudiante) {
         HashMap<String, Object> respuesta = new HashMap<>();
         Connection conexionBD = ConexionBD.abrirConexion();
         if (conexionBD != null) {
@@ -133,7 +156,8 @@ public class EstudianteDAO {
         }
         return respuesta;
     }
-
+ 
+    // Método de serialización (ya existente)
     private static Estudiante serializarEstudiante(ResultSet resultado) throws SQLException {
         Estudiante estudiante = new Estudiante();
         estudiante.setMatricula(resultado.getInt("matricula"));

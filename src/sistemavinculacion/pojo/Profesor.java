@@ -10,59 +10,34 @@ package sistemavinculacion.pojo;
  */
 public class Profesor {
     private Integer idProfesor;
-    private String nombre;
-    private String matricula;
-    private String correo;
     private Integer idUsuario;
     private String usuario;
-    private String contraseña;
+    private String contrasena;
+    private String nombre;
+    private String correo;
+    private String tipoProfesor;
 
     // Constructor vacío
     public Profesor() {
     }
 
     // Constructor con parámetros
-    public Profesor(Integer idProfesor, String nombre, String matricula, String correo, Integer idUsuario, String usuario, String contraseña) {
+    public Profesor(Integer idProfesor,Integer idUsuario, String usuario, String contrasena, String nombre, String correo, String tipoProfesor) {
         this.idProfesor = idProfesor;
-        this.nombre = nombre;
-        this.matricula = matricula;
-        this.correo = correo;
         this.idUsuario = idUsuario;
         this.usuario = usuario;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.tipoProfesor = tipoProfesor;
     }
 
-    // Getters y Setters
     public Integer getIdProfesor() {
         return idProfesor;
     }
 
     public void setIdProfesor(Integer idProfesor) {
         this.idProfesor = idProfesor;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
     }
 
     public Integer getIdUsuario() {
@@ -81,11 +56,37 @@ public class Profesor {
         this.usuario = usuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getTipoProfesor() {
+        return tipoProfesor;
+    }
+
+    public void setTipoProfesor(String tipoProfesor) {
+        this.tipoProfesor = tipoProfesor;
+    }
+
+
 }
