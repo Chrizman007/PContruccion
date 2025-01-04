@@ -27,13 +27,62 @@ public class EstudianteDAO {
         if (conexionBD != null) {
             try {
                 String consulta = "SELECT matricula, nombre, correo, telefono, carrera, seguro_facultativo, promedio_general, creditos, "
-                        + "carta_liberacion, carta_asignacion, plan_actividades, evaluacion_organizacion, idUsuario, usuario, contrasena, asignado"
-                        + "FROM estudiante";
+                        + ", idUsuario, usuario, contrasena, asignado"
+                        + "FROM estudiantes";
                 PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
                 ResultSet resultado = prepararConsulta.executeQuery();
                 estudiantes = new ArrayList<>();
                 while (resultado.next()) {
                     estudiantes.add(serializarEstudiante(resultado));
+                }
+            } catch (SQLException e) {
+                estudiantes = null;
+                e.printStackTrace();
+            } finally {
+                conexionBD.close();
+            }
+        }
+        return estudiantes;
+    }
+    
+    public static Estudiante obtenerEstudiantePorMatricula(int matricula) throws SQLException {
+        Estudiante estudiante = null;
+        Connection conexionBD = ConexionBD.abrirConexion();
+        if (conexionBD != null) {
+            try {
+                String consulta = "SELECT *"
+                        + "FROM estudiantes WHERE matricula = ?";
+                PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
+                prepararConsulta.setInt(1, matricula);
+                ResultSet resultado = prepararConsulta.executeQuery();
+                if (resultado.next()) {
+                    estudiante = serializarEstudiante(resultado);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                conexionBD.close();
+            }
+        }
+        return estudiante;
+    }
+    
+    public static List<Estudiante> obtenerNoAsignadosPP() throws SQLException {
+        List<Estudiante> estudiantes = null;
+        Connection conexionBD = ConexionBD.abrirConexion();
+        if (conexionBD != null) {
+            try {
+                String consulta = "SELECT matricula, nombre, carrera FROM estudiantes WHERE asignado = 0 && id_usuario = 2";
+                PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
+                ResultSet resultado = prepararConsulta.executeQuery();
+                estudiantes = new ArrayList<>();
+                while (resultado.next()) {
+                    // Crear un objeto Estudiante con solo los campos necesarios
+                    Estudiante estudiante = new Estudiante();
+                    estudiante.setMatricula(resultado.getInt("matricula"));
+                    estudiante.setNombre(resultado.getString("nombre"));
+                    estudiante.setCarrera(resultado.getString("carrera"));
+                    estudiantes.add(estudiante);
                 }
             } catch (SQLException e) {
                 estudiantes = null;
@@ -50,11 +99,11 @@ public class EstudianteDAO {
         Connection conexionBD = ConexionBD.abrirConexion();
         if (conexionBD != null) {
             try {
-                String sentencia = "INSERT INTO estudiante (matricula, nombre, correo, telefono, carrera, seguro_facultativo, promedio_general, "
+                String sentencia = "INSERT INTO estudiantes (matricula, nombre, correo, telefono, carrera, seguro_facultativo, promedio_general, "
                         + "creditos, idUsuario, usuario, contrasena, asignado) "
                         + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)";
                 PreparedStatement prepararSentencia = conexionBD.prepareStatement(sentencia);
-                prepararSentencia.setString(1, estudiante.getMatricula());
+                prepararSentencia.setInt(1, estudiante.getMatricula());
                 prepararSentencia.setString(2, estudiante.getNombre());
                 prepararSentencia.setString(3, estudiante.getCorreo());
                 prepararSentencia.setString(4, estudiante.getTelefono());
@@ -87,7 +136,7 @@ public class EstudianteDAO {
 
     private static Estudiante serializarEstudiante(ResultSet resultado) throws SQLException {
         Estudiante estudiante = new Estudiante();
-        estudiante.setMatricula(resultado.getString("matricula"));
+        estudiante.setMatricula(resultado.getInt("matricula"));
         estudiante.setNombre(resultado.getString("nombre"));
         estudiante.setCorreo(resultado.getString("correo"));
         estudiante.setTelefono(resultado.getString("telefono"));
@@ -95,7 +144,7 @@ public class EstudianteDAO {
         estudiante.setSeguroFacultativo(resultado.getString("seguro_facultativo"));
         estudiante.setPromedioGeneral(resultado.getFloat("promedio_general"));
         estudiante.setCreditos(resultado.getInt("creditos"));
-        estudiante.setIdUsuario(resultado.getInt("idUsuario"));
+        estudiante.setIdUsuario(resultado.getInt("id_usuario"));
         estudiante.setUsuario(resultado.getString("usuario"));
         estudiante.setContraseña(resultado.getString("contrasena"));
         estudiante.setAsignado(resultado.getInt("asignado"));

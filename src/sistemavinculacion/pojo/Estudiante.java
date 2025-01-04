@@ -10,7 +10,7 @@ package sistemavinculacion.pojo;
  */
 public class Estudiante {
 
-    private String matricula;
+    private Integer matricula;
     private String nombre;
     private String correo;
     private String telefono;
@@ -26,7 +26,7 @@ public class Estudiante {
     public Estudiante() {
     }
 
-    public Estudiante(String matricula, String nombre, String correo, String telefono, String carrera, String seguroFacultativo, Float promedioGeneral, Integer creditos, Integer idUsuario, String usuario, String contraseña, int asignado) {
+    public Estudiante(Integer matricula, String nombre, String correo, String telefono, String carrera, String seguroFacultativo, Float promedioGeneral, Integer creditos, Integer idUsuario, String usuario, String contraseña, int asignado) {
         this.matricula = matricula;
         this.nombre = nombre;
         this.correo = correo;
@@ -41,11 +41,11 @@ public class Estudiante {
         this.asignado = asignado;
     }
 
-    public String getMatricula() {
+    public Integer getMatricula() {
         return matricula;
     }
 
-    public void setMatricula(String matricula) {
+    public void setMatricula(Integer matricula) {
         this.matricula = matricula;
     }
 

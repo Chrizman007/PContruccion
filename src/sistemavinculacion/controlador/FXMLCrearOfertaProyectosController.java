@@ -79,7 +79,7 @@ public class FXMLCrearOfertaProyectosController implements Initializable {
         // Validar que los DatePicker tengan valores seleccionados
         if (dpInicio.getValue() == null || dpFin.getValue() == null) {
             Utilidades.mostrarAlertaSimple("Fechas requeridas", 
-                "Por favor selecciona las fechas de inicio y fin.", Alert.AlertType.WARNING);
+                "Complete todos los campos obligatorios.", Alert.AlertType.WARNING);
             return;
         }
 
@@ -90,7 +90,7 @@ public class FXMLCrearOfertaProyectosController implements Initializable {
         // Validar que la fecha de inicio sea anterior a la fecha de fin
         if (dpInicio.getValue().isAfter(dpFin.getValue())) {
             Utilidades.mostrarAlertaSimple("Error en las fechas", 
-                "La fecha de inicio debe ser anterior a la fecha de fin.", Alert.AlertType.ERROR);
+                "La fecha de limite no puede ser anterior a la fecha de inicio.", Alert.AlertType.ERROR);
             return;
         }
 

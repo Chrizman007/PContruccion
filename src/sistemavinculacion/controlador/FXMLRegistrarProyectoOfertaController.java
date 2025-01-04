@@ -59,9 +59,7 @@ public class FXMLRegistrarProyectoOfertaController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // Configurar la tabla
         configurarTabla();
-        // Cargar la información de los proyectos
         cargarInformacionTabla();
     }
     
@@ -120,7 +118,6 @@ public class FXMLRegistrarProyectoOfertaController implements Initializable {
                 // Llamar al DAO para actualizar el archivo en la base de datos
                 ProyectoppDAO.subirDocumento(proyectoSeleccionado.getIdProyecto(), documentoBytes, archivoSeleccionado.getName());
 
-                // Mostrar mensaje de éxito
                 Utilidades.mostrarAlertaSimple("Documento adjuntado", 
                         "El documento se ha adjuntado correctamente al proyecto.", 
                         Alert.AlertType.INFORMATION);
@@ -160,7 +157,7 @@ public class FXMLRegistrarProyectoOfertaController implements Initializable {
             }
                 
                 Utilidades.mostrarAlertaSimple("Proyecto agregado", 
-                        "El proyecto ha sido agregado correctamente.", 
+                        "El proyecto ha sido agregado satisfactoriamente.", 
                         Alert.AlertType.INFORMATION);
                 cerrarVentana();
             } else {
@@ -170,17 +167,15 @@ public class FXMLRegistrarProyectoOfertaController implements Initializable {
             }
         } catch (SQLException ex) {
             Utilidades.mostrarAlertaSimple("Error", 
-                    "Hubo un error al actualizar el proyecto: " + ex.getMessage(), 
+                    "Error de conexión. Los datos no se han guardado: " + ex.getMessage(), 
                     Alert.AlertType.ERROR);
         }
     }
 
-
-// Método para cerrar la ventana actual
-private void cerrarVentana() {
-    // Obtener el stage actual (ventana) y cerrarlo
-    javafx.stage.Stage stage = (javafx.stage.Stage) tvProyectos.getScene().getWindow();
-    stage.close();
-}
+    private void cerrarVentana() {
+        // Obtener el stage actual (ventana) y cerrarlo
+        javafx.stage.Stage stage = (javafx.stage.Stage) tvProyectos.getScene().getWindow();
+        stage.close();
+    }
 
 }

@@ -79,6 +79,48 @@ public class ProyectoppDAO {
         }
         return resultado; // Retorna el número de filas afectadas
     }
+    
+    public static int actualizarCupo(int idProyecto, int nuevoCupo) throws SQLException {
+        Connection conexionBD = ConexionBD.abrirConexion();
+        if (conexionBD != null) {
+            try {
+                String consulta = "UPDATE proyectos_pp SET cupos = ? WHERE id_proyecto_pp = ?";
+                PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
+                prepararConsulta.setInt(1, nuevoCupo);
+                prepararConsulta.setInt(2, idProyecto);
+                return prepararConsulta.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return 0;  // Si ocurre un error
+            } finally {
+                conexionBD.close();
+            }
+        }
+        return 0;
+    }
+    
+    public static List<Proyectopp> obtenerProyectosOfertados() throws SQLException {
+    List<Proyectopp> proyectos = null;
+    Connection conexionBD = ConexionBD.abrirConexion();
+    if (conexionBD != null) {
+        try {
+            String consulta = "SELECT *" +
+                              "FROM proyectos_pp WHERE ofertado = 1";
+            PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
+            ResultSet resultado = prepararConsulta.executeQuery();
+            proyectos = new ArrayList<>();
+            while (resultado.next()) {
+                proyectos.add(serializarProyecto(resultado));
+            }
+        } catch (SQLException e) {
+            proyectos = null;
+            e.printStackTrace();
+        } finally {
+            conexionBD.close();
+        }
+    }
+    return proyectos;
+}
 
 
     private static Proyectopp serializarProyecto(ResultSet resultado) throws SQLException {
@@ -97,6 +139,7 @@ public class ProyectoppDAO {
         proyecto.setArchivo(resultado.getBytes("archivo"));
         return proyecto;
     }
+    
 
     public static int insertarProyecto(Proyectopp proyecto) throws SQLException {
         int resultado = 0;

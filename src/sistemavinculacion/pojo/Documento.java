@@ -15,6 +15,16 @@ public class Documento {
     private String tipo;
     private byte[] archivo;
 
+    public Documento(int idDocumento, int matricula, String nombreDocumento, String tipo, byte[] archivo) {
+        this.idDocumento = idDocumento;
+        this.matricula = matricula;
+        this.nombreDocumento = nombreDocumento;
+        this.tipo = tipo;
+        this.archivo = archivo;
+    }
+    
+    
+
     public Documento() {}
 
     public int getIdDocumento() {

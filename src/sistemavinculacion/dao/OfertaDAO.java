@@ -29,7 +29,7 @@ public class OfertaDAO {
                 conexionBD.close();
                 if (filasAfectadas > 0) {
                     respuesta.put("error", false);
-                    respuesta.put("mensaje", "La oferta fue registrada con éxito.");
+                    respuesta.put("mensaje", "La oferta publicada exitosamente.");
                 } else {
                     respuesta.put("error", true);
                     respuesta.put("mensaje", "No se pudo registrar la oferta, por favor intente más tarde.");
@@ -40,7 +40,7 @@ public class OfertaDAO {
             }
         } else {
             respuesta.put("error", true);
-            respuesta.put("mensaje", "No se pudo establecer conexión con la base de datos.");
+            respuesta.put("mensaje", "Error de conexión. Los datos no se han guardado.");
         }
         return respuesta;
     }

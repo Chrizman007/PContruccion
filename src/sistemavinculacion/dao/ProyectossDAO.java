@@ -24,7 +24,7 @@ public class ProyectossDAO {
         if (conexionBD != null) {
             try {
                 String consulta = "SELECT id_proyecto_ss, nombre, descripcion, cupos, requisitos, fecha_inicio, fecha_fin, " +
-                                "nombre_organizacion, ubicacion, ofertado, id_responsable FROM Proyectoss";
+                                "nombre_organizacion, ubicacion, ofertado, id_responsable, archivo FROM Proyectoss";
                 PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
                 ResultSet resultado = prepararConsulta.executeQuery();
                 proyectos = new ArrayList<>();
@@ -55,7 +55,7 @@ public class ProyectossDAO {
                 System.out.println("No se encontró el proyecto con el ID " + idProyecto);
             }
         } catch (SQLException e) {
-            throw new SQLException("Error al actualizar el documento en la base de datos", e);
+            throw new SQLException("Formato o tamaño del archivo no permitido", e);
         }
     }
     
@@ -66,15 +66,15 @@ public class ProyectossDAO {
             try {
                 String consulta = "UPDATE proyectos_ss SET ofertado = ? WHERE id_proyecto_ss = ?";
                 PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
-                prepararConsulta.setInt(1, ofertado); // Actualiza el atributo 'ofertado' como int
+                prepararConsulta.setInt(1, ofertado); 
                 prepararConsulta.setInt(2, idProyecto);
 
-                resultado = prepararConsulta.executeUpdate(); // Ejecuta la consulta y guarda el número de filas afectadas
+                resultado = prepararConsulta.executeUpdate(); 
             } catch (SQLException e) {
-                e.printStackTrace(); // Imprime la traza del error para depuración
-                throw new SQLException("Error al actualizar el estado 'ofertado' del proyecto.", e);
+                e.printStackTrace(); 
+                throw new SQLException("Error al ofertar el proyecto.", e);
             } finally {
-                conexionBD.close(); // Cierra la conexión en el bloque finally
+                conexionBD.close();
             }
         }
         return resultado; // Retorna el número de filas afectadas
@@ -93,6 +93,7 @@ public class ProyectossDAO {
         proyecto.setUbicacion(resultado.getString("ubicacion"));
         proyecto.setOfertado(resultado.getInt("ofertado"));
         proyecto.setIdResponsable(resultado.getInt("id_responsable"));
+        proyecto.setArchivo(resultado.getBytes("archivo"));
         return proyecto;
     }
 
