@@ -100,27 +100,28 @@ public class ProyectoppDAO {
     }
     
     public static List<Proyectopp> obtenerProyectosOfertados() throws SQLException {
-    List<Proyectopp> proyectos = null;
-    Connection conexionBD = ConexionBD.abrirConexion();
-    if (conexionBD != null) {
-        try {
-            String consulta = "SELECT *" +
-                              "FROM proyectos_pp WHERE ofertado = 1";
-            PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
-            ResultSet resultado = prepararConsulta.executeQuery();
-            proyectos = new ArrayList<>();
-            while (resultado.next()) {
-                proyectos.add(serializarProyecto(resultado));
+        List<Proyectopp> proyectos = null;
+        Connection conexionBD = ConexionBD.abrirConexion();
+        if (conexionBD != null) {
+            try {
+                String consulta = "SELECT *" +
+                                  "FROM proyectos_pp WHERE ofertado = 1";
+                PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
+                ResultSet resultado = prepararConsulta.executeQuery();
+                proyectos = new ArrayList<>();
+                while (resultado.next()) {
+                    proyectos.add(serializarProyecto(resultado));
+                }
+            } catch (SQLException e) {
+                proyectos = null;
+                e.printStackTrace();
+            } finally {
+                conexionBD.close();
             }
-        } catch (SQLException e) {
-            proyectos = null;
-            e.printStackTrace();
-        } finally {
-            conexionBD.close();
         }
+        return proyectos;
     }
-    return proyectos;
-}
+    
 
 
     private static Proyectopp serializarProyecto(ResultSet resultado) throws SQLException {

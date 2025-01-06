@@ -16,7 +16,6 @@
             <TableColumn fx:id="colCarrera" prefWidth="257.0" text="Carrera" />
         </columns>
       </TableView>
-      <TextField fx:id="tfBuscar" layoutX="418.0" layoutY="170.0" prefHeight="31.0" prefWidth="235.0" promptText="Buscar" />
       <Button layoutX="389.0" layoutY="630.0" mnemonicParsing="false" onAction="#clicSeleccionar" text="Seleccionar" />
       <Label layoutX="294.0" layoutY="36.0" text="Estudiantes">
          <font>
@@ -28,7 +27,5 @@
             <Font name="Bookman Old Style Bold" size="16.0" />
          </font>
       </Label>
-      <Button layoutX="751.0" layoutY="170.0" mnemonicParsing="false" text="Matricula" />
-      <Button layoutX="665.0" layoutY="170.0" mnemonicParsing="false" text="Nombre" />
    </children>
 </AnchorPane>

@@ -37,6 +37,8 @@ public class SeleccionEstudiantePPDAO {
         return selecciones;
     }
     
+    
+    
     public static SeleccionEstudiantePP obtenerSeleccionPorMatricula(int matricula) throws SQLException {
     SeleccionEstudiantePP seleccion = null;
     Connection conexionBD = ConexionBD.abrirConexion();
@@ -57,6 +59,57 @@ public class SeleccionEstudiantePPDAO {
     }
     return seleccion;
 }
+    
+    public static void RegistrarPrimeraOpcion(String nombreProyecto, int matricula) throws SQLException {
+        Connection conexionBD = ConexionBD.abrirConexion();
+        if (conexionBD != null) {
+            try {
+                String consulta = "INSERT INTO seleccion_estudiante_pp (opcion1, matricula) VALUES (?, ?)";
+                PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
+                prepararConsulta.setString(1, nombreProyecto);
+                prepararConsulta.setInt(2, matricula);
+                prepararConsulta.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                conexionBD.close();
+            }
+        }
+    }
+    
+    public static void RegistrarSegundaOpcion(String nombreProyecto, int matricula) throws SQLException {
+        Connection conexionBD = ConexionBD.abrirConexion();
+        if (conexionBD != null) {
+            try {
+                String consulta = "UPDATE seleccion_estudiante_pp SET opcion2 = ? WHERE matricula = ?";
+                PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
+                prepararConsulta.setString(1, nombreProyecto);
+                prepararConsulta.setInt(2, matricula);
+                prepararConsulta.executeUpdate(); // Cambiar a executeUpdate
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                conexionBD.close();
+            }
+        }
+    }
+    
+    public static void RegistrarTerceraOpcion(String nombreProyecto, int matricula) throws SQLException {
+        Connection conexionBD = ConexionBD.abrirConexion();
+        if (conexionBD != null) {
+            try {
+                String consulta = "UPDATE seleccion_estudiante_pp SET opcion3 = ? WHERE matricula = ?";
+                PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
+                prepararConsulta.setString(1, nombreProyecto);
+                prepararConsulta.setInt(2, matricula);
+                prepararConsulta.executeUpdate(); // Cambiar a executeUpdate
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                conexionBD.close();
+            }
+        }
+    }
 
 
     private static SeleccionEstudiantePP serializarSeleccionPP(ResultSet resultado) throws SQLException {

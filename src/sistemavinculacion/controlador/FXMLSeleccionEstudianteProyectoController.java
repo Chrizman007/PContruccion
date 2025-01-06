@@ -43,8 +43,6 @@ public class FXMLSeleccionEstudianteProyectoController implements Initializable 
     private TableColumn<Estudiante, Integer> colMatricula;
     @FXML
     private TableColumn<Estudiante, String> colCarrera;
-    @FXML
-    private TextField tfBuscar;
     
     private ObservableList<Estudiante> estudiantes;
 

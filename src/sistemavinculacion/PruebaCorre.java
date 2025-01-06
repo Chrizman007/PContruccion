@@ -18,7 +18,7 @@ public class PruebaCorre extends Application {
     
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent vista = FXMLLoader.load(getClass().getResource("vista/FXMLSeleccionEstudianteProyecto.fxml"));
+        Parent vista = FXMLLoader.load(getClass().getResource("vista/FXMLExpedienteEstudiante.fxml"));
         Scene scene = new Scene(vista);
         primaryStage.setScene(scene);
         primaryStage.show();

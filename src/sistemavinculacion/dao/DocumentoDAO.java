@@ -62,6 +62,95 @@ public class DocumentoDAO {
         }
         return documentos;
     }
+    
+    public static Documento obtenerDocumentoCartaAsignacion(int matricula) throws SQLException {
+        Documento documento = null;
+        Connection conexionBD = ConexionBD.abrirConexion();
+        if (conexionBD != null) {
+            try {
+                String consulta = "SELECT id_documento, matricula, nombre_documento, tipo, archivo " +
+                                  "FROM Documentos WHERE matricula = ? AND tipo = 'Carta Asignacion'";
+                PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
+                prepararConsulta.setInt(1, matricula);
+                ResultSet resultado = prepararConsulta.executeQuery();
+                if (resultado.next()) {
+                    documento = serializarDocumento(resultado);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                conexionBD.close();
+            }
+        }
+        return documento;
+    }
+    
+    public static Documento obtenerDocumentoCartaLiberacion(int matricula) throws SQLException {
+        Documento documento = null;
+        Connection conexionBD = ConexionBD.abrirConexion();
+        if (conexionBD != null) {
+            try {
+                String consulta = "SELECT id_documento, matricula, nombre_documento, tipo, archivo " +
+                                  "FROM Documentos WHERE matricula = ? AND tipo = 'Carta Liberacion'";
+                PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
+                prepararConsulta.setInt(1, matricula);
+                ResultSet resultado = prepararConsulta.executeQuery();
+                if (resultado.next()) {
+                    documento = serializarDocumento(resultado);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                conexionBD.close();
+            }
+        }
+        return documento;
+    }
+    
+    public static Documento obtenerDocumentoPlanActividades(int matricula) throws SQLException {
+        Documento documento = null;
+        Connection conexionBD = ConexionBD.abrirConexion();
+        if (conexionBD != null) {
+            try {
+                String consulta = "SELECT id_documento, matricula, nombre_documento, tipo, archivo " +
+                                  "FROM Documentos WHERE matricula = ? AND tipo = 'Plan Actividades'";
+                PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
+                prepararConsulta.setInt(1, matricula);
+                ResultSet resultado = prepararConsulta.executeQuery();
+                if (resultado.next()) {
+                    documento = serializarDocumento(resultado);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                conexionBD.close();
+            }
+        }
+        return documento;
+    }
+    
+    public static Documento obtenerDocumentoEvaluacion(int matricula) throws SQLException {
+        Documento documento = null;
+        Connection conexionBD = ConexionBD.abrirConexion();
+        if (conexionBD != null) {
+            try {
+                String consulta = "SELECT id_documento, matricula, nombre_documento, tipo, archivo " +
+                                  "FROM Documentos WHERE matricula = ? AND tipo = 'Evaluacion Organizacion'";
+                PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
+                prepararConsulta.setInt(1, matricula);
+                ResultSet resultado = prepararConsulta.executeQuery();
+                if (resultado.next()) {
+                    documento = serializarDocumento(resultado);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                conexionBD.close();
+            }
+        }
+        return documento;
+    }
+    
 
     private static Documento serializarDocumento(ResultSet resultado) throws SQLException {
         Documento documento = new Documento();

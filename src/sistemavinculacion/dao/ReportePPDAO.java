@@ -66,6 +66,30 @@ public class ReportePPDAO {
         return reportes;
     }
     
+    public static List<ReportePP> obtenerReportesDesempeño(int matricula) throws SQLException {
+        List<ReportePP> reportes = null;
+        Connection conexionBD = ConexionBD.abrirConexion();
+        if (conexionBD != null) {
+            try {
+                String consulta = "SELECT id_reporte_pp, id_proyecto_pp, fecha_subida, archivo_reporte, " +
+                                "comentarios, matricula, tipo FROM ReportesPP WHERE matricula = ? && tipo = 'Reporte Desempeño'";
+                PreparedStatement prepararConsulta = conexionBD.prepareStatement(consulta);
+                prepararConsulta.setInt(1, matricula);
+                ResultSet resultado = prepararConsulta.executeQuery();
+                reportes = new ArrayList<>();
+                while (resultado.next()) {
+                    reportes.add(serializarReporte(resultado));
+                }
+            } catch (SQLException e) {
+                reportes = null;
+                e.printStackTrace();
+            } finally {
+                conexionBD.close();
+            }
+        }
+        return reportes;
+    }
+    
    public static HashMap<String, Object> registrarReporte(ReportePP reporte) {
         HashMap<String, Object> respuesta = new HashMap<>();
         Connection conexionBD = ConexionBD.abrirConexion();

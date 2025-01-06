@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import sistemavinculacion.pojo.Estudiante;
 
 public class ExpedienteDAO {
     public static List<Expediente> obtenerExpedientes() throws SQLException {
@@ -62,6 +63,7 @@ public class ExpedienteDAO {
         }
         return expedientes;
     }
+    
     
     private static Expediente serializarExpediente(ResultSet resultado) throws SQLException {
         Expediente expediente = new Expediente();
